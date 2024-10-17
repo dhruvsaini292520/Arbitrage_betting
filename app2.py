@@ -30,12 +30,12 @@ def create_gauge_chart(total_prob, title="Total Implied Probability"):
         value=total_prob,
         delta={'reference': 100, 'increasing': {'color': "Green"}},
         gauge={
-            'axis': {'range': [0, 120], 'tickwidth': 2, 'tickcolor': "black"},
-            'bar': {'color': "Blue"},  # You can change the bar color to represent goals
+            'axis': {'range': [80, 120], 'tickwidth': 2, 'tickcolor': "black"},
+            'bar': {'color': "Blue",'thickness': 0.4},  # You can change the bar color to represent goals
             'steps': [
-                {'range': [0, 40], 'color': 'Green'},  # Representing the soccer field (low value range)
-                {'range': [40, 80], 'color': 'yellow'},     # Mid-range values, depicting midfield action
-                {'range': [80, 120], 'color': 'Red'}        # High value, depicting the goal zone
+                {'range': [80, 99.5], 'color': 'Red'},  # Representing the soccer field (low value range)
+                {'range': [99.5, 100.5], 'color': 'yellow'},     # Mid-range values, depicting midfield action
+                {'range': [100.5, 120], 'color': 'Green'}        # High value, depicting the goal zone
             ],
             'threshold': {
                 'line': {'color': "black", 'width': 4},
