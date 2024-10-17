@@ -14,26 +14,90 @@ def classification_model(data):
     prediction = model.predict(data)
     # return prediction
     return "YES" if prediction == 1 else "NO"
-# Function to create a gauge chart for total probability
+
+    # Create the gauge chart
+    # Function to create a soccer-themed gauge chart for total probability
 def create_gauge_chart(total_prob, title="Total Implied Probability"):
-    # Ensure the total probability is within 0-100 range
-    if total_prob > 100:
-        total_prob = 100
+    # Ensure the total probability is within 0-120 range (since you used 120 in the range)
+    if total_prob > 120:
+        total_prob = 120
     elif total_prob < 0:
         total_prob = 0
-    # Create the gauge chart
+    
+#     # Create the gauge chart with soccer theme
     fig = go.Figure(go.Indicator(
-        mode="gauge+number",
+        mode="gauge+number+delta",
         value=total_prob,
-        gauge={'axis': {'range': [0, 100]},
-               'bar': {'color': "lightblue"}},
-        title={'text': title}
+        delta={'reference': 100, 'increasing': {'color': "Green"}},
+        gauge={
+            'axis': {'range': [0, 120], 'tickwidth': 2, 'tickcolor': "black"},
+            'bar': {'color': "Blue"},  # You can change the bar color to represent goals
+            'steps': [
+                {'range': [0, 40], 'color': 'Green'},  # Representing the soccer field (low value range)
+                {'range': [40, 80], 'color': 'yellow'},     # Mid-range values, depicting midfield action
+                {'range': [80, 120], 'color': 'Red'}        # High value, depicting the goal zone
+            ],
+            'threshold': {
+                'line': {'color': "black", 'width': 4},
+                'thickness': 0.75,
+                'value': total_prob
+            }
+        },
+        title={'text': title, 'font': {'size': 24, 'color': 'darkgreen', 'family': "Arial Black"}},
+        number={'suffix': "%", 'font': {'size': 36}}
     ))
+
+
+#     # Update layout to include a soccer field green background and make it eye-catching
+    fig.update_layout(
+        paper_bgcolor="rgba(0,0,0,0)",  # Making the background transparent
+        plot_bgcolor="lightgreen",  # Light green to resemble a soccer field
+        margin=dict(t=100, b=50, l=50, r=50),  # Add some margin for better visuals
+    )
+
     return fig
+
+# Function to create a radar chart to visualize probabilities
+def create_radar_chart(home_prob, draw_prob, away_prob, title="Probability Radar Chart"):
+    categories = ['Home Win', 'Draw', 'Away Win']
+    values = [home_prob, draw_prob, away_prob]
+
+    fig = go.Figure()
+
+    fig.add_trace(go.Scatterpolar(
+        r=values,
+        theta=categories,
+        fill='toself',
+        name='Probabilities',
+        line=dict(color='Green')
+    ))
+
+    fig.update_layout(
+        title={'text': title, 'font': {'size': 24, 'color': 'darkgreen', 'family': "Arial Black"}},
+        polar=dict(
+            bgcolor='red',
+            radialaxis=dict(
+                visible=True,
+                range=[0, 100],
+                tickvals=[20, 40, 60, 80, 100],
+                tickangle=45,
+                tickfont=dict(size=12)
+            ),
+            angularaxis=dict(
+                tickfont=dict(size=14)
+            )
+        ),
+        showlegend=False,
+        margin=dict(t=100, b=50, l=50, r=50),
+        paper_bgcolor="rgba(0,0,0,0)"
+    )
+
+    return fig
+
 # Display the custom header image at the top of the page
 st.image("https://files.oaiusercontent.com/file-tKT6fPrnuoa84PeHTRMKROZE?se=2024-10-15T23%3A38%3A44Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3D738e7c86-790c-465b-ba11-a042017853a2.webp&sig=RDwu77dqshhm69Yx2ZOqVZLrxZ/12znVp0IOoe3noZ0%3D")
 # Streamlit UI with full-page design
-st.title("BET ARBITRAGE AI PREDICTOR")
+st.title("Arbitrage Betting Detector")
 # Full-page layout using columns and CSS
 col1, col2 = st.columns([1, 5])
 # File uploader to upload CSV with a single row of data
@@ -115,22 +179,45 @@ if st.button("Preview Data"):
         st.markdown(f"<div class='probability'>Draw Implied Probability: <span class='highlight'>{row['Draw Implied Probability (%)']:.2f}%</span></div>", unsafe_allow_html=True)
         st.markdown(f"<div class='probability'>Away Win Implied Probability: <span class='highlight'>{row['Away Win Implied Probability (%)']:.2f}%</span></div>", unsafe_allow_html=True)
         st.markdown(f"<div class='probability'>Total Implied Probability: <span class='highlight'>{row['Total Implied Probability (%)']:.2f}%</span></div>", unsafe_allow_html=True)
+        col1, col2 = st.columns(2)
+        with col1:
         # Create and display gauge chart for Total Implied Probability
-        st.plotly_chart(create_gauge_chart(row['Total Implied Probability (%)'], "Total Implied Probability Gauge"))
+            st.plotly_chart(create_gauge_chart(row['Total Implied Probability (%)'], "Total Implied Probability Gauge"))
+        with col2:
+            st.plotly_chart(create_radar_chart(row['Home Win Implied Probability (%)'], row['Draw Implied Probability (%)'], row['Away Win Implied Probability (%)'], "Probability Radar Chart"))
         # Separator for each row
         st.markdown("<div class='separator'></div>", unsafe_allow_html=True)
-        
-# Submit button for model prediction
+
 if st.button("Submit"):
     if len(df) == 1:  # Ensure it's a single-row CSV
-            st.write("Running the model...")
-            # Prepare data for prediction (ensure it matches model input)
-            prediction = classification_model(df[['Avg_Home_Prob', 'Avg_Draw_Prob', 'Avg_Away_Prob']])
-            # Display the result
-            st.write(f"### Model Prediction: {prediction} , Arbitrage Betting is possible for this match.")
+        st.write("Running the model...")
+        # Prepare data for prediction (ensure it matches model input)
+        prediction = model.predict(df[['Avg_Home_Prob', 'Avg_Draw_Prob', 'Avg_Away_Prob']])[0]
+
+          # Display the result and thumbs up or down image using markdown with inline HTML
+        if prediction == 1:
+            st.markdown(
+                """
+                <div style="text-align: center;">
+                    <h3 style="margin-right: 15px;">YES, Arbitrage Betting is possible.</h3>
+                    <img src="https://media.istockphoto.com/id/962056670/photo/soccer-ball-character-with-thumbs-up-gesture.jpg?s=612x612&w=0&k=20&c=fWSlhJnqj3rkkfdBE13MIr0-sPN2hLkxGhI7R_mCb-I=" width="500">
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
+        elif prediction == 0:
+            st.markdown(
+                """
+                <div style="text-align: center;">
+                    <h3 style="margin-right: 15px;">NO, Arbitrage Betting is not possible.</h3>
+                    <img src="https://thumbs.dreamstime.com/z/soccer-ball-character-thumbs-down-gesture-soccer-ball-character-thumbs-down-gesture-isolated-white-background-d-123887600.jpg" width="500">
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
     else:
-            st.write("Please upload a CSV file with only one row.")
-# CSS for custom full-width styles
+        st.write("Please upload a CSV file with only one row.")
+    
 st.markdown(
     """
     <style>
