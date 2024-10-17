@@ -94,7 +94,7 @@ def create_radar_chart(home_prob, draw_prob, away_prob, title="Probability Radar
 
     return fig
 
-st.markdown("<h1 style='text-align: center; font-family: Arial, sans-serif; color: GREEN;'>Arbitrage Betting Detector</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; font-family: Copperplate Gothic, sans-serif; color: GREEN;'>Arbitrage Betting Detector</h1>", unsafe_allow_html=True)
 
 st.markdown(
     """
