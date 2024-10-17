@@ -220,14 +220,13 @@ if st.button("Submit"):
             )
         elif prediction == 0:
             st.markdown(
-                """
-                <div style="text-align: center;">
-                    <h3 style="margin-right: 15px;">NO, Arbitrage Betting is not possible.</h3>
-                    <img src="https://thumbs.dreamstime.com/z/soccer-ball-character-thumbs-down-gesture-soccer-ball-character-thumbs-down-gesture-isolated-white-background-d-123887600.jpg" width="500">
-                </div>
-                """,
-                unsafe_allow_html=True
-            )
+        """
+        <div style="text-align: center;">
+            <h3 style="margin-right: 15px;">NO, Arbitrage Betting is not possible.</h3>
+            <img src="https://thumbs.dreamstime.com/z/soccer-ball-character-thumbs-down-gesture-soccer-ball-character-thumbs-down-gesture-isolated-white-background-d-123887600.jpg" style="width: 500px; height: auto; object-fit: cover; object-position: top; clip-path: inset(0% 0% 15% 0%);">
+        </div>
+        """,
+        unsafe_allow_html=True)
     else:
         st.write("Please upload a CSV file with only one row.")
     
