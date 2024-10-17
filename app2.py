@@ -94,10 +94,23 @@ def create_radar_chart(home_prob, draw_prob, away_prob, title="Probability Radar
 
     return fig
 
-# Display the custom header image at the top of the page
-st.image("https://offshoresportsbookfact.net/wp-content/uploads/2016/08/Arbitrage-Betting-explained.jpg")
-# Streamlit UI with full-page design
-st.title("Arbitrage Betting Detector")
+st.markdown("<h1 style='text-align: center; font-family: Arial, sans-serif; color: GREEN;'>Arbitrage Betting Detector</h1>", unsafe_allow_html=True)
+
+st.markdown(
+    """
+    <style>
+    .full-width-image {
+        width: 100%;
+        height: auto;
+        max-height: 400px; /* Adjust the max height as per your requirement */
+        object-fit: cover;  /* Ensures the aspect ratio is maintained */
+    }
+    </style>
+    <img src="https://cdn.wallpapersafari.com/51/18/lzn2Zf.jpg" class="full-width-image">
+    """,
+    unsafe_allow_html=True
+)
+
 # Full-page layout using columns and CSS
 col1, col2 = st.columns([1, 5])
 # File uploader to upload CSV with a single row of data
