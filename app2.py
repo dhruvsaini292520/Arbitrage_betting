@@ -95,7 +95,7 @@ def create_radar_chart(home_prob, draw_prob, away_prob, title="Probability Radar
     return fig
 
 # Display the custom header image at the top of the page
-st.image("https://files.oaiusercontent.com/file-tKT6fPrnuoa84PeHTRMKROZE?se=2024-10-15T23%3A38%3A44Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3D738e7c86-790c-465b-ba11-a042017853a2.webp&sig=RDwu77dqshhm69Yx2ZOqVZLrxZ/12znVp0IOoe3noZ0%3D")
+st.image("https://offshoresportsbookfact.net/wp-content/uploads/2016/08/Arbitrage-Betting-explained.jpg")
 # Streamlit UI with full-page design
 st.title("Arbitrage Betting Detector")
 # Full-page layout using columns and CSS
