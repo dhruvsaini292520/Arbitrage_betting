@@ -228,7 +228,7 @@ else:
                 st.markdown(
                    """
                     <div style="text-align: center;">
-                        <h3 style="margin-right: 15px;">NO, Arbitrage Betting is not possible.</h3>
+                        <h3 style="margin-right: 15px;">Yes, Arbitrage Betting is possible.</h3>
                         <img src="https://thumbs.dreamstime.com/z/soccer-ball-character-thumbs-up-gesture-soccer-ball-character-thumbs-up-gesture-isolated-white-background-d-117212924.jpg"
                         style="width: 500px; height: auto; object-fit: cover; object-position: top; clip-path: inset(0% 0% 15% 0%);">
                     </div>
