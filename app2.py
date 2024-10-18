@@ -19,7 +19,25 @@ if 'logged_in' not in st.session_state:
 
 # If the user is not logged in, show the login form
 if not st.session_state.logged_in:
-    st.title("ARBITECTIVE LOG IN")
+    # Display App Title
+    st.markdown("<h1 style='text-align: center; font-family: Copperplate Gothic, sans-serif; color: GOLD; font-size: 60px;'>ARBITECTIVE</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center; font-family: Copperplate Gothic, sans-serif; color: SILVER;'>Arbitrage Betting Detector</h1>", unsafe_allow_html=True)
+
+    # Image at the top
+    st.markdown(
+        """
+        <style>
+        .full-width-image {
+            width: 100%;
+            height: auto;
+            max-height: 400px;
+            object-fit: cover;
+        }
+        </style>
+        <img src="https://cdn.wallpapersafari.com/51/18/lzn2Zf.jpg" class="full-width-image">
+        """,
+        unsafe_allow_html=True
+    )
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
 
@@ -32,9 +50,6 @@ if not st.session_state.logged_in:
         else:
             st.error("Username or Password is incorrect. Please try again!")
 else:
-    # Once logged in, show the app's content
-    st.title("Arbitrage Betting Detector")
-
     # Load pre-trained machine learning model (RandomForest)
     with open('arbitrage_model.pkl', 'rb') as model_file:
         model = pickle.load(model_file)
@@ -181,13 +196,17 @@ else:
 
         # Display the data in a vertical format with enhanced styling
         for index, row in df_display.iterrows():
-            st.markdown(f"<div class='hometeam-title'>Home Team: {row['Home Team']}</div>", unsafe_allow_html=True)
-            st.markdown(f"<div class='awayteam-title'>Away Team: {row['Away Team']}</div>", unsafe_allow_html=True)
+            # Styling for Home Team in green
+            st.markdown(f"<div class='hometeam-title' style='color: green;'>Home Team: {row['Home Team']}</div>", unsafe_allow_html=True)
             
-            st.markdown(f"<div class='probability'>Home Win Implied Probability: <span class='highlight'>{row['Home Win Implied Probability (%)']:.2f}%</span></div>", unsafe_allow_html=True)
-            st.markdown(f"<div class='probability'>Draw Implied Probability: <span class='highlight'>{row['Draw Implied Probability (%)']:.2f}%</span></div>", unsafe_allow_html=True)
-            st.markdown(f"<div class='probability'>Away Win Implied Probability: <span class='highlight'>{row['Away Win Implied Probability (%)']:.2f}%</span></div>", unsafe_allow_html=True)
-            st.markdown(f"<div class='probability'>Total Implied Probability: <span class='highlight'>{row['Total Implied Probability (%)']:.2f}%</span></div>", unsafe_allow_html=True)
+            # Styling for Away Team in blue
+            st.markdown(f"<div class='awayteam-title' style='color: blue;'>Away Team: {row['Away Team']}</div>", unsafe_allow_html=True)
+            
+            # Styling for probabilities (percentages) in red
+            st.markdown(f"<div class='probability'>Home Win Implied Probability: <span class='highlight' style='color: red;text-align: left'>{row['Home Win Implied Probability (%)']:.2f}%</span></div>", unsafe_allow_html=True)
+            st.markdown(f"<div class='probability'>Draw Implied Probability: <span class='highlight' style='color: red;text-align: center'>{row['Draw Implied Probability (%)']:.2f}%</span></div>", unsafe_allow_html=True)
+            st.markdown(f"<div class='probability'>Away Win Implied Probability: <span class='highlight' style='color: red;text-align: right'>{row['Away Win Implied Probability (%)']:.2f}%</span></div>", unsafe_allow_html=True)
+            st.markdown(f"<div class='probability'>Total Implied Probability: <span class='highlight' style='color: red;text-align: center'>{row['Total Implied Probability (%)']:.2f}%</span></div>", unsafe_allow_html=True)
             
             col1, col2 = st.columns(2)
             with col1:
@@ -220,9 +239,11 @@ else:
                     """
                     <div style="text-align: center;">
                         <h3 style="margin-right: 15px;">NO, Arbitrage Betting is not possible.</h3>
-                        <img src="https://thumbs.dreamstime.com/z/soccer-ball-character-thumbs-down-gesture-soccer-ball-character-thumbs-down-gesture-isolated-white-background-d-123887600.jpg" width="500">
+                        <img src="https://thumbs.dreamstime.com/z/soccer-ball-character-thumbs-down-gesture-soccer-ball-character-thumbs-down-gesture-isolated-white-background-d-123887600.jpg"
+                        style="width: 500px; height: auto; object-fit: cover; object-position: top; clip-path: inset(0% 0% 15% 0%);">
                     </div>
                     """,
-                    unsafe_allow_html=True)
+                    unsafe_allow_html=True
+                )
         else:
             st.write("Please upload a CSV file with only one row.")
