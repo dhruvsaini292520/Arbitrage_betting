@@ -226,10 +226,11 @@ else:
             # Display the result and thumbs up or down image using markdown with inline HTML
             if prediction == 1:
                 st.markdown(
-                    """
+                   """
                     <div style="text-align: center;">
-                        <h3 style="margin-right: 15px;">YES, Arbitrage Betting is possible.</h3>
-                        <img src="https://media.istockphoto.com/id/962056670/photo/soccer-ball-character-with-thumbs-up-gesture.jpg" width="500">
+                        <h3 style="margin-right: 15px;">NO, Arbitrage Betting is not possible.</h3>
+                        <img src="https://thumbs.dreamstime.com/z/soccer-ball-character-thumbs-up-gesture-soccer-ball-character-thumbs-up-gesture-isolated-white-background-d-117212924.jpg"
+                        style="width: 500px; height: auto; object-fit: cover; object-position: top; clip-path: inset(0% 0% 15% 0%);">
                     </div>
                     """,
                     unsafe_allow_html=True
