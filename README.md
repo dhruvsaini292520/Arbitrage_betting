@@ -78,3 +78,20 @@ The key dependencies for the project are:
 
 All required dependencies are listed in the `requirements.txt` file, which can be installed using `pip`.
 
+##Proposed Improvements for Betting Website
+Arbitrage Betting Options:
+
+Implement a feature that captures and displays all potential arbitrage betting opportunities for specific dates. This will allow users to easily identify profitable betting scenarios across various fixtures.Instead of the user inputting data for each individual fixture. 
+Optimal Odds Calculation:
+
+Develop a tool that calculates optimal odds for the listed fixtures.
+Risk Assessment Tab:
+
+Introduce a dedicated tab that evaluates the risk level of their chosen betting website. This tool will analyze various factors to determine the site's exposure to risk.
+Odds Adjustment Recommendations:
+
+Based on the risk assessment, provide users with recommended changes to odds that can mitigate identified risks. This will empower users to make safer betting choices.
+Model Development:
+
+Build a predictive model incorporating these adjustments, which can be integrated into the website's front end. This model will enhance user experience by providing tailored recommendations based on current data.
+
