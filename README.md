@@ -78,7 +78,7 @@ The key dependencies for the project are:
 
 All required dependencies are listed in the `requirements.txt` file, which can be installed using `pip`.
 
-##Proposed Improvements for Betting Website
+## Proposed Improvements for Betting Website
 Arbitrage Betting Options:
 
 Implement a feature that captures and displays all potential arbitrage betting opportunities for specific dates. This will allow users to easily identify profitable betting scenarios across various fixtures.Instead of the user inputting data for each individual fixture. 
