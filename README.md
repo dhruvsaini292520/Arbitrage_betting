@@ -81,7 +81,7 @@ All required dependencies are listed in the `requirements.txt` file, which can b
 ## Proposed Improvements for Betting Website/Model
 
 - **Arbitrage Betting Options**:
-Implement a feature that captures and displays all potential arbitrage betting opportunities for specific dates. This will allow users to easily identify profitable betting scenarios across various fixtures.Instead of the user inputting data for each individual fixture. 
+Implement a feature that captures and displays all potential arbitrage betting opportunities for specific dates. This will allow users to easily identify risky scenarios across various fixtures. Instead of the user inputting data for each individual fixture. 
 
 - **Optimal Odds Calculation**:
 Develop a tool that calculates optimal odds for the listed fixtures.
