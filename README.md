@@ -9,8 +9,7 @@ A web application for detecting opportunities for arbitrage betting in soccer ma
 - Usage
 - Project Structure
 - Dependencies
-- Contributing
-- License
+- Proposed Improvements for Betting Website/Model
 
 ## Overview
 This project provides an easy-to-use web interface that helps users identify arbitrage opportunities in soccer betting markets. By analyzing the implied probabilities of home win, draw, and away win outcomes, the app helps betting websites to evaluate the total implied probability of a match, highlighting potential risk of arbitrage opportunities for bettors.
