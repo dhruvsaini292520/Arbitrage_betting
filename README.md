@@ -1,10 +1,5 @@
 # Arbitrage Betting Detector
 
-## Prototype Front End - Below are the steps to run the app locally. 
-- arbitective.streamlit.app
-
-A web application for detecting opportunities for arbitrage betting in soccer matches. The application is built using Python, Streamlit, and Plotly, and provides users with visual tools to gauge the implied probabilities of outcomes in soccer games.
-
 ## Table of Contents
 - Overview
 - Features
@@ -15,7 +10,7 @@ A web application for detecting opportunities for arbitrage betting in soccer ma
 - Proposed Improvements for Betting Website/Model
 
 ## Overview
-This project provides an easy-to-use web interface that helps users identify arbitrage opportunities in soccer betting markets. By analyzing the implied probabilities of home win, draw, and away win outcomes, the app helps betting websites to evaluate the total implied probability of a match, highlighting potential risk of arbitrage opportunities for bettors.
+This project features a user-friendly web interface that identifies arbitrage opportunities in soccer betting. It calculates the implied probabilities for home wins, draws, and away wins, enabling betting websites to assess a match’s overall probability and highlight potential arbitrage opportunities for bettors.
 
 ## Features
 - **Data Visualization**: Displays implied probabilities using an interactive gauge chart and a radar chart.
